@@ -4,7 +4,7 @@ pipeline {
     environment {
         // Define environment variables
         DOCKERFILE_PATH = "Dockerfile" // Path to Dockerfile in GitHub repository
-        DOCKER_IMAGE_NAME='newdocker'
+        DOCKER_IMAGE_NAME='nobodynow/newdocker'
         DOCKER_TAG = "final" // Docker image tag
         
     }

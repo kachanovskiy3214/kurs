@@ -40,10 +40,11 @@ pipeline {
 
         stage('Push Docker image') {
             steps {
+                
                 // Push Docker image to repository
                 script { 
-                    docker.withRegistry('https://index.docker.io/v1/', 'docker_credentials') {
-                     docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_TAG}").push()
+                        withDockerRegistry([ credentialsId: "docker_credentials", url: "https://index.docker.io/v1/" ]) {
+                        bat "docker push ${DOCKER_IMAGE_NAME}:${DOCKER_TAG}"
             }
         }
     }

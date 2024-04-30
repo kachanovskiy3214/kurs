@@ -43,7 +43,7 @@ pipeline {
                 
                 // Push Docker image to repository
                  script { 
-                    docker.withRegistry('https://index.docker.io/v1/', 'docker_credentials') {
+                    docker.withRegistry('', 'docker_credentials') {
                      docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_TAG}").push()
             }
         }

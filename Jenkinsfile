@@ -12,7 +12,7 @@ pipeline {
         stage('Restart Docker') {
             steps {
                 // Restart Docker server
-                // sh 'sudo systemctl restart docker'
+                sh 'sudo systemctl restart docker'
             }
         }
         stage('Clone repository') {

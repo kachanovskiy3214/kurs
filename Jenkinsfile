@@ -6,8 +6,7 @@ pipeline {
         DOCKERFILE_PATH = "Dockerfile" // Path to Dockerfile in GitHub repository
         DOCKER_IMAGE_NAME='newdocker'
         DOCKER_TAG = "final" // Docker image tag
-        registry="nobodynow/node-app"
-        dockerImage= ''
+        
     }
 
     stages {
@@ -28,7 +27,7 @@ pipeline {
             steps {
                 // Build Docker image
                 script {
-                   dockerImage = docker.build "${DOCKER_IMAGE_NAME}:${DOCKER_TAG}"
+                   docker.build "${DOCKER_IMAGE_NAME}:${DOCKER_TAG}"
                 }
             }
         }
@@ -46,7 +45,7 @@ pipeline {
                 // Push Docker image to repository
                  script { 
                     docker.withRegistry('', 'docker_credentials') {
-                    dockerImage.push()
+                    docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_TAG}").push()
             }
         }
     }

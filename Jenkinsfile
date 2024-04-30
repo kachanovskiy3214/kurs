@@ -26,7 +26,7 @@ pipeline {
             steps {
                 // Build Docker image
                 script {
-                   dockerImage = docker.build("${DOCKER_IMAGE_NAME}:${DOCKER_TAG}", "-f ${DOCKERFILE_PATH} .")
+                   docker.build("${DOCKER_IMAGE_NAME}:${DOCKER_TAG}", "-f ${DOCKERFILE_PATH} .")
                 }
             }
         }
@@ -42,9 +42,9 @@ pipeline {
             steps {
                 
                 // Push Docker image to repository
-                script { 
-                        docker.withRegistry([ credentialsId: "docker_credentials", url: "https://index.docker.io/v1/" ]) {
-                        dockerImage.push()
+                 script { 
+                    docker.withRegistry('https://index.docker.io/v1/', 'docker_credentials') {
+                     docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_TAG}").push()
             }
         }
     }

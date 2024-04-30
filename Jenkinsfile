@@ -43,10 +43,8 @@ pipeline {
             steps {
                 
                 // Push Docker image to repository
-                 script { 
-                    docker.withRegistry('', 'docker_credentials') {
-                    docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_TAG}").push()
-            }
+                   withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]) {
+                    bat "docker push devopsglobalmedia/teamcitydocker:build"
         }
     }
 }

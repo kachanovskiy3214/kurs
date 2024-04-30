@@ -43,8 +43,10 @@ pipeline {
             steps {
                 
                 // Push Docker image to repository
+                script{
                    withDockerRegistry([ credentialsId: "docker_credentials", url: "" ]) {
                     bat "docker push devopsglobalmedia/teamcitydocker:build"
+                   }
         }
     }
 }

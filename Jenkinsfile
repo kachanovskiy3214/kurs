@@ -45,7 +45,7 @@ pipeline {
                 // Push Docker image to repository
                 script{
                    withDockerRegistry([ credentialsId: "docker_credentials", url: "" ]) {
-                    bat "docker push devopsglobalmedia/teamcitydocker:build"
+                     docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_TAG}").push()
                    }
         }
     }

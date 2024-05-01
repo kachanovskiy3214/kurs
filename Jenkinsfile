@@ -42,14 +42,6 @@ pipeline {
                    withDockerRegistry([ credentialsId: "docker_credentials", url: "https://index.docker.io/v1/" ]) {
                      docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_TAG}").push()
                    }
-        }
-    }
-}
-        stage('Run Docker image') {
-            steps {
-                // Run Docker image
-                script {
-                    docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_TAG}").run('-d -p 81:80')
                 }
             }
         }

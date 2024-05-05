@@ -29,6 +29,14 @@ pipeline {
         }
       }
     }
+    stage('Run Docker image') {
+      steps {
+        // Run Docker image
+        script {
+                dockerImage.run('-d -p 81:80')
+        }
+      }
+    }
   }
 }
 

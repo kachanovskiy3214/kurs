@@ -28,7 +28,7 @@ pipeline {
                 // Push Docker image to repository
                 script{
                    withDockerRegistry([ credentialsId: "docker_credentials", url: "https://index.docker.io/v1/" ]) {
-                     docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_TAG}").push()
+                     docker.image("${DOCKER_IMAGE_NAME}").push()
                    }
                 }
             }
@@ -37,7 +37,7 @@ pipeline {
             steps {
                 // Run Docker image
                 script {
-                    docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_TAG}").run('-d -p 81:80')
+                    docker.image("${DOCKER_IMAGE_NAME}").run('-d -p 81:80')
                 }
             }
         }

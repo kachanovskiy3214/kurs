@@ -45,5 +45,13 @@ pipeline {
                 }
             }
         }
+        stage('Run Docker image') {
+            steps {
+                // Run Docker image
+                script {
+                    docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_TAG}").run('-d -p 81:80')
+                }
+            }
+        }
     }
 }

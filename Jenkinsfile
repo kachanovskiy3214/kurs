@@ -9,7 +9,7 @@ pipeline {
     stage('Cloning Git') {
       steps {
          // Clone GitHub repository
-         git branch: 'master', url: 'https://github.com/kachanovskiy3214/kurs.git'
+         git branch: 'feature', url: 'https://github.com/kachanovskiy3214/kurs.git'
       }
     }
     stage('Building image') {

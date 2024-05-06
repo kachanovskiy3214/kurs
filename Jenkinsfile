@@ -29,6 +29,11 @@ pipeline {
         }
       }
     }
+    stage('Cleaning Up'){
+      steps{
+        sh "docker rmi --force $registry:$BUILD_NUMBER"
+      }
+    }
     stage('Run Docker image') {
       steps {
         // Run Docker image

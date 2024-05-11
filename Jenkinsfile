@@ -3,7 +3,7 @@ pipeline {
     registry = "nobodynow/kurs"
     registryCredential = 'docker_credentials'
     dockerImage = ''
-    oldBuild="${currentBuild.previousBuild.number}"
+    oldBuild=docker.container("$registry:${currentBuild.previousBuild.number}").id
   }
   agent any
   stages {
@@ -33,6 +33,7 @@ pipeline {
     stage('Cleaning Up'){
       steps{
          script {
+           
             sh 'docker rm -f $registry:$oldBuild'
          }
       }

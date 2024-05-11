@@ -3,7 +3,6 @@ pipeline {
     registry = "nobodynow/kurs"
     registryCredential = 'docker_credentials'
     dockerImage = ''
-    oldBuild=docker.container("$registry:${currentBuild.previousBuild.number}").id
   }
   agent any
   stages {
@@ -34,7 +33,7 @@ pipeline {
       steps{
          script {
            
-            sh 'docker rm -f $registry:$oldBuild'
+            sh 'docker rm -f container'
          }
       }
     }
@@ -42,7 +41,7 @@ pipeline {
       steps {
         // Run Docker image
         script {
-                dockerImage.run('-d -p 81:80')
+                dockerImage.run('-d -p 81:80 --name container')
         }
       }
     }

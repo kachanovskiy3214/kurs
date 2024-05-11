@@ -3,7 +3,7 @@ pipeline {
     registry = "nobodynow/kurs"
     registryCredential = 'docker_credentials'
     dockerImage = ''
-    oldBuild=${currentBuild.previousBuild.number}
+    oldBuild="${currentBuild.previousBuild.number}"
   }
   agent any
   stages {

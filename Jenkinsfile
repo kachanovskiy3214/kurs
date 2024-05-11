@@ -31,7 +31,7 @@ pipeline {
     }
     stage('Cleaning Up'){
       steps{
-        sh "docker rmi --force $registry:$BUILD_NUMBER"
+        sh "docker rm -f $dockerImage"
       }
     }
     stage('Run Docker image') {

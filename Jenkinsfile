@@ -31,7 +31,7 @@ pipeline {
     }
     stage('Cleaning Up'){
       steps{
-        dockerImage()
+        dockerImage.rm()
       }
     }
     stage('Run Docker image') {

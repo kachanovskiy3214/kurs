@@ -32,7 +32,7 @@ pipeline {
     stage('Cleaning Up'){
       steps{
          script {
-            dockerImage.rm()
+            sh 'docker rm -f $registry:BUILD_NUMBER'
          }
       }
     }

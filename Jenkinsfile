@@ -9,7 +9,7 @@ pipeline {
     stage('Cloning Git') {
       steps {
          // Clone GitHub repository
-         git branch: 'master', url: 'https://github.com/kachanovskiy3214/kurs.git'
+         git branch: 'production', url: 'https://github.com/kachanovskiy3214/kurs.git'
       }
     }
     stage('Building image') {
@@ -29,11 +29,19 @@ pipeline {
         }
       }
     }
+    stage('Cleaning Up'){
+      steps{
+         script {
+           
+            sh 'docker rm -f container'
+         }
+      }
+    }
     stage('Run Docker image') {
       steps {
         // Run Docker image
         script {
-                dockerImage.run('-d -p 81:80')
+                dockerImage.run('-d -p 81:80 --name container')
         }
       }
     }

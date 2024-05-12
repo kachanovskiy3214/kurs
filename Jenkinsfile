@@ -6,12 +6,6 @@ pipeline {
   }
   agent any
   stages {
-    stage('Cloning Git') {
-      steps {
-         // Clone GitHub repository
-         git branch: 'production', url: 'https://github.com/kachanovskiy3214/kurs.git'
-      }
-    }
     stage('Building image') {
       steps{
         script {
